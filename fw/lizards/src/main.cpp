@@ -1,5 +1,87 @@
+/**********************************************************************
+ * 
+ * Measuring the speed of lizards using optical gates.
+ * ATmega328P (Arduino Nano), 16 MHz, PlatformIO
+ *
+ * Copyright (c) 2023 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ *
+ **********************************************************************/
+
+
+/* Defines -----------------------------------------------------------*/
+#define NGATES 12
+
+
+/* Includes ----------------------------------------------------------*/
+// Wire library allows you to communicate with I2C/TWI devices
+#include <Wire.h>
 #include "Arduino.h"
 
+
+/* Global variables --------------------------------------------------*/
+
+char gates[NGATES] = {
+        2, 3, 4, 5, 6, 7, 19, 18, 17, 16, 15, 14};
+
+
+/* Function definitions ----------------------------------------------*/
+/**********************************************************************
+ * Function: setup()
+ * Purpose:  Setup function where the program execution begins. Init 
+ *           serial communications (I2C/TWI, UART) and GPIO pins.
+ * Returns:  none
+ **********************************************************************/
+void setup()
+{
+    // Setup I2C/TWI communication with the Temp/Humid sensor
+    Wire.begin();
+
+    // Setup UART communication with Serial monitor in Arduino IDE
+    Serial.begin(9600);
+    Serial.println("\r\nMeasuring the speed of lizards");
+
+    // Setup input pins from optical gates
+    for (uint8_t i = 0; i < NGATES; i++) {
+        pinMode(gates[i], INPUT_PULLUP);
+    }
+    delay(1000);
+
+    // Test signals from all gates
+    for (uint8_t i = 0; i < NGATES; i++) {
+        Serial.print("#");
+        Serial.print(i, DEC);
+        Serial.print("... ");
+        uint8_t state = digitalRead(gates[i]);
+        if (state == 0) {
+            Serial.println("OK");
+        }
+        else {
+            Serial.println("Error");
+        }
+        delay(100);
+    }
+    Serial.println("\r\nSetup: Optical gates tested.");
+}
+
+
+/**********************************************************************
+ * Function: loop()
+ * Purpose:  Infinite loop. This function is executed over and over 
+ *           again. Check values from optical gates, measure the time
+ *           and send it to the UART. Use Serial Monitor to view it.
+ * Returns:  none
+ **********************************************************************/
+void loop()
+{
+    // xxx
+}
+
+
+
+
+/*
 int pinOut [11] = {2, 3, 4, 5, 6, 7, 19, 18, 17, 16, 15}; //vzdy 5. pin od shora
 
 //int time_measured [11]; //matice pro vysledne casy
@@ -164,3 +246,4 @@ void loop() {
     }
   }
 }
+*/
