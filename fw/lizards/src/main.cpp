@@ -40,15 +40,15 @@ void setup()
 
     // Setup UART communication with Serial monitor in Arduino IDE
     Serial.begin(9600);
-    Serial.println("\r\nMeasuring the speed of lizards");
 
     // Setup input pins from optical gates
     for (uint8_t i = 0; i < NGATES; i++) {
         pinMode(gates[i], INPUT_PULLUP);
     }
-    delay(1000);
+    delay(500);
 
     // Test signals from all gates
+    Serial.println("\r\nTest of optical gates");
     for (uint8_t i = 0; i < NGATES; i++) {
         Serial.print("#");
         Serial.print(i, DEC);
@@ -62,7 +62,6 @@ void setup()
         }
         delay(100);
     }
-    Serial.println("\r\nSetup: Optical gates tested.");
 }
 
 
