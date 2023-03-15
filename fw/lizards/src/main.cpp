@@ -11,8 +11,8 @@
 
 
 /* Defines -----------------------------------------------------------*/
-#define NGATES 12
-
+#define NGATES 11
+#define LED_STATUS 13
 
 /* Includes ----------------------------------------------------------*/
 // Wire library allows you to communicate with I2C/TWI devices
@@ -21,9 +21,10 @@
 
 
 /* Global variables --------------------------------------------------*/
-
+// Optical gates
 char gates[NGATES] = {
-        2, 3, 4, 5, 6, 7, 19, 18, 17, 16, 15, 14};
+        7, 6, 5, 4, 3, 2, 16, 17, 18, 19, 15
+    };
 
 
 /* Function definitions ----------------------------------------------*/
@@ -41,11 +42,11 @@ void setup()
     // Setup UART communication with Serial monitor in Arduino IDE
     Serial.begin(9600);
 
-    // Setup input pins from optical gates
+    // Setup input pins for optical gates
     for (uint8_t i = 0; i < NGATES; i++) {
         pinMode(gates[i], INPUT_PULLUP);
     }
-    delay(500);
+    delay(100);
 
     // Test signals from all gates
     Serial.println("\r\nTest of optical gates");
@@ -62,6 +63,19 @@ void setup()
         }
         delay(100);
     }
+
+    // Setup output pin for status LED
+    pinMode(LED_STATUS, OUTPUT);
+
+    // Test status LED
+    Serial.print("\r\nTest of status LED... ");
+    for (uint8_t i = 0; i < 5; i++) {
+        digitalWrite(LED_STATUS, 0);
+        delay(250);
+        digitalWrite(LED_STATUS, 1);
+        delay(250);
+    }
+    Serial.println("done ");
 }
 
 
