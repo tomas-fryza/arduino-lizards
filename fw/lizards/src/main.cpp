@@ -12,12 +12,12 @@
 
 /* Defines -----------------------------------------------------------*/
 #define NGATES 11
-#define LED_STATUS 13
+#define PIN_LED 13
+#define PIN_DHT11 11
 
 /* Includes ----------------------------------------------------------*/
-// Wire library allows you to communicate with I2C/TWI devices
-#include <Wire.h>
 #include "Arduino.h"
+#include <dht.h>
 
 
 /* Global variables --------------------------------------------------*/
@@ -25,6 +25,9 @@
 char gates[NGATES] = {
         7, 6, 5, 4, 3, 2, 16, 17, 18, 19, 15
     };
+
+// Temperature and humidity sensor DHT11
+dht DHT;
 
 
 /* Function definitions ----------------------------------------------*/
@@ -36,9 +39,6 @@ char gates[NGATES] = {
  **********************************************************************/
 void setup()
 {
-    // Setup I2C/TWI communication with the Temp/Humid sensor
-    Wire.begin();
-
     // Setup UART communication with Serial monitor in Arduino IDE
     Serial.begin(9600);
 
@@ -46,36 +46,42 @@ void setup()
     for (uint8_t i = 0; i < NGATES; i++) {
         pinMode(gates[i], INPUT_PULLUP);
     }
-    delay(100);
-
-    // Test signals from all gates
-    Serial.println("\r\nTest of optical gates");
-    for (uint8_t i = 0; i < NGATES; i++) {
-        Serial.print("#");
-        Serial.print(i, DEC);
-        Serial.print("... ");
-        uint8_t state = digitalRead(gates[i]);
-        if (state == 0) {
-            Serial.println("OK");
-        }
-        else {
-            Serial.println("Error");
-        }
-        delay(100);
-    }
 
     // Setup output pin for status LED
-    pinMode(LED_STATUS, OUTPUT);
+    pinMode(PIN_LED, OUTPUT);
 
-    // Test status LED
-    Serial.print("\r\nTest of status LED... ");
-    for (uint8_t i = 0; i < 5; i++) {
-        digitalWrite(LED_STATUS, 0);
-        delay(250);
-        digitalWrite(LED_STATUS, 1);
+    // Setup input pin for DHT11 sensor
+    pinMode(PIN_DHT11, INPUT_PULLUP);
+    delay(100);
+
+    // ==================================================
+    // Test signals from all gates
+    Serial.print("\r\nTest of optical gates ");
+    for (uint8_t i = 0; i < NGATES; i++) {
+        uint8_t state = digitalRead(gates[i]);
+        if (state == 0) {
+            Serial.print(".");
+        }
+        else {
+            Serial.print("#");
+            Serial.print(i, DEC);
+            Serial.print(" Error ");
+        }
         delay(250);
     }
-    Serial.println("done ");
+    Serial.println(" done");
+
+    // Test status LED
+    Serial.print("Test of status LED (5 blinks) ");
+    for (uint8_t i = 0; i < 5; i++) {
+        digitalWrite(PIN_LED, 0);
+        delay(250);
+        digitalWrite(PIN_LED, 1);
+        Serial.print(".");
+        delay(250);
+    }
+    Serial.println(" done");
+
 }
 
 
@@ -89,6 +95,15 @@ void setup()
 void loop()
 {
     // xxx
+
+    // Read and display DHT11 data
+    DHT.read11(PIN_DHT11);
+    Serial.print("T: ");
+    Serial.print(DHT.temperature, 0);
+    Serial.print("\tH: ");
+    Serial.println(DHT.humidity, 0);
+
+    delay(2000);
 }
 
 
