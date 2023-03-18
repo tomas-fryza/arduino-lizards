@@ -30,6 +30,10 @@ uint8_t gates[NGATES] = {
 // Temperature and humidity sensor DHT11
 dht DHT;
 
+uint8_t measure_en = 0;
+uint8_t measure_id = 0;
+uint8_t measured_num = 0;
+
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -87,9 +91,6 @@ void loop()
 {
     uint8_t ch;
 
-    uint8_t measure_en = 0;
-    uint8_t measure_id = 0;
-    uint8_t measured_num = 0;
     uint8_t measured_status[NGATES] = {0};
     unsigned long measured_time[NGATES] = {0};
     unsigned long start_millis;
@@ -125,6 +126,7 @@ void loop()
         measured_status[i] = 1;
         measured_time[i] = 0;
         measured_num = 1;
+        Serial.println(i);
 
         // Read all other optical gates
         do {
@@ -138,6 +140,7 @@ void loop()
                     measured_status[i] = 1;
                     measured_time[i] = current_millis - start_millis;
                     measured_num++;
+                    Serial.println(i);
                 }
             }
         } while ((measured_num < NGATES) && (current_millis - start_millis <= TIMEOUT_MILLIS));
