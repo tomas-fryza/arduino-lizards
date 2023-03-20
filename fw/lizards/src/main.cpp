@@ -11,10 +11,11 @@
 
 
 /* Defines -----------------------------------------------------------*/
+#define TIMEOUT_MILLIS 60000  // 60 seconds
+
 #define NGATES 11
 #define PIN_LED 13    // SCK
 #define PIN_DHT11 11  // MOSI
-#define TIMEOUT_MILLIS 5000  // 5 seconds
 
 /* Includes ----------------------------------------------------------*/
 #include "Arduino.h"
@@ -76,7 +77,7 @@ void setup()
     Serial.println(" done");
 
     Serial.println("Press 'S' to start");
-    Serial.println("id;time0;time1;time2;time3;time4;time5;time6;time77;time8;time9;time10;humid;temp");
+    Serial.println("id;time0;time1;time2;time3;time4;time5;time6;time7;time8;time9;time10;humid;temp");
 }
 
 
@@ -126,7 +127,7 @@ void loop()
         measured_status[i] = 1;
         measured_time[i] = 0;
         measured_num = 1;
-        Serial.println(i);
+        // Serial.println(i);
 
         // Read all other optical gates
         do {
@@ -140,7 +141,7 @@ void loop()
                     measured_status[i] = 1;
                     measured_time[i] = current_millis - start_millis;
                     measured_num++;
-                    Serial.println(i);
+                    // Serial.println(i);
                 }
             }
         } while ((measured_num < NGATES) && (current_millis - start_millis <= TIMEOUT_MILLIS));
