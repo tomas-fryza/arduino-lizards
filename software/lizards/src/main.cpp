@@ -13,7 +13,7 @@
 /* Defines -----------------------------------------------------------*/
 #define TIMEOUT_MILLIS 60000  // 60 seconds
 
-#define NGATES 11
+#define NGATES 11     // Number of optical gates
 #define PIN_LED 13    // SCK
 #define PIN_DHT11 11  // MOSI
 
@@ -31,12 +31,11 @@ uint8_t gates[NGATES] = {
 // Temperature and humidity sensor DHT11
 dht DHT;
 
-uint8_t measure_en = 0;
-uint8_t measure_id = 0;
-uint8_t measured_num = 0;
+uint8_t measure_en = 0;    // Enable measurement
+uint8_t measure_id = 0;    // Measurement ID
+uint8_t measured_num = 0;  // Total number of measured gates
 
 
-/* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: setup()
  * Purpose:  Setup function where the program execution begins. Init 
@@ -46,7 +45,7 @@ uint8_t measured_num = 0;
  **********************************************************************/
 void setup()
 {
-    // Setup UART communication with Serial monitor in Arduino IDE
+    // Setup UART communication with Serial monitor
     Serial.begin(9600);
 
     // Setup input pins for optical gates
@@ -60,14 +59,14 @@ void setup()
     // Setup input pin for DHT11 sensor
     pinMode(PIN_DHT11, INPUT_PULLUP);
 
-    // Test signals from all gates
+    // Test received signals from all gates
     Serial.print("\r\nTest of optical gates ");
     for (uint8_t i = 0; i < NGATES; i++) {
         uint8_t state = digitalRead(gates[i]);
         if (state == 0) {  // Signal OK
             Serial.print(".");
         }
-        else {
+        else {  // No received signal
             Serial.print("#");
             Serial.print(i, DEC);
             Serial.print(" Error ");
@@ -76,7 +75,7 @@ void setup()
     }
     Serial.println(" done");
 
-    Serial.println("Press 'S' to start");
+    Serial.println("Press 'S' to start each measurement");
     Serial.println("id;time0;time1;time2;time3;time4;time5;time6;time7;time8;time9;time10;humid;temp");
 }
 
@@ -90,7 +89,7 @@ void setup()
  **********************************************************************/
 void loop()
 {
-    uint8_t ch;
+    uint8_t incoming;
 
     uint8_t measured_status[NGATES] = {0};
     unsigned long measured_time[NGATES] = {0};
@@ -99,8 +98,8 @@ void loop()
 
     // Wait for Start from UART: key "S"
     if (Serial.available() > 0) {
-        ch = Serial.read();
-        if ((ch == 'S') || (ch == 's')) {
+        incoming = Serial.read();
+        if ((incoming == 'S') || (incoming == 's')) {
             measure_en = 1;
         }
     }
