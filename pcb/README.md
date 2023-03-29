@@ -11,7 +11,7 @@ L-53F3BT | | THT | LED IR, 940nm, 5mm
 DG350-3.50-05P-14-02A | | | Screw terminal
 BL 1 34 G | | | Female headers
 
-## Revisions
+## Possible future revisions
 
 * switching transistors for IR leds
 * smd packages for both IR leds and phototransistors
