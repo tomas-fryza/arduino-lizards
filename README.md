@@ -15,13 +15,13 @@
 
 ## About
 
-The measuring path contains 11 optical wounds, i.e. pairs of 940 nm infrared diodes and phototransistors. The first gate is the starting gate, the others are spaced 10 centimeters apart. The length of the track is thus 1 meter.
+The measuring path contains 11 optical wounds, i.e. pairs of 940 nm infrared diodes and phototransistors. The first gate is the starting gate, the others are spaced 10 centimeters apart. The length of the track is thus 1 meter. Combine temperature and humidity sensor is used as well.
 
-The ATmega328P microcontroller on the Arduino Nano board provides data acquisition from optical gates, time measurement and data sending. The measuring track is powered via a mini USB connector, and at the same time, all data about the measurement progress is sent to the computer/laptop via this USB.
-
-Once the microcontroller is programmed, on the PC/laptop just run one of the programs that can communicate with the serial port, such as PuTTY, Terminal, Termite, or other.
+The ATmega328P microcontroller on the Arduino Nano board provides data acquisition from optical gates, time, temperature and humidity measurement, and data sending. The measuring track is powered via a mini USB connector, and at the same time, all data about the measurement progress is sent to the computer/laptop via this USB. Values are separated by semicolumn ";" symbol and can be subsequently processed, for example, in Excel.
 
 ## Usage
+
+Once the microcontroller is programmed, on the PC/laptop just run one of the programs that can communicate with the serial port, such as PuTTY, Terminal, Termite, or other.
 
 Perform the following steps to measure the speed of lizards:
 
@@ -45,22 +45,33 @@ Perform the following steps to measure the speed of lizards:
 
 2. Set the following parameters:
 
-   a. Connection type: **Serial**
+   a. Category: Logging: **Printable output**
 
-   b. Serial line: your-com-port, such as COM1 or `/dev/ttyUSB0`
-
-      > **Help:** To get the port name, run the Device Manager on Windows or type `dmesg` command to Terminal in Linux. Here, the COM6 port on Windows 10 or `/dev/ttyUSB0` port on Linux were detected.
-      >
-      > ![com_port_win](images/windows_device-manager.png)
-      > ![com_port_linux](images/linux_port.png)
-
-   c. Speed: **9600**
-
-   d. Category > Logging, TBD............
+   b. Select Log file name, such as: `C:\Documents\putty_&Y&M&D-&T.log`
 
       ![putty2](images/putty_2.png)
 
+   c. Change Category to **Session** and select Connection type: **Serial**
+
+   d. Serial line: put your com port, such as **COM5** (Windows) or `/dev/ttyUSB0` (Linux)
+
+      > **Help:** To get the port name, run the Device Manager on Windows or type `dmesg` command to Terminal in Linux.
+
+   e. Speed: **9600**
+
+   f. Name Save Sessions: **LIZARDS** and click on **Save** button
+
+   g. Anytime in the future, there is no need to configure PuTTY again, just double click on saved default settings **LIZARDS** to open the connection.
+
       ![putty1](images/putty_1.png)
+
+   h. Press `S` on keyboard to start each measurement.
+
+      ![putty3](images/putty_3.png)
+
+   i. Values are saved to your log file.
+
+      ![putty4](images/putty_4.png)
 
 ### Terminal for Windows
 
