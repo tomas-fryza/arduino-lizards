@@ -110,7 +110,7 @@ Perform the following steps to measure the speed of lizards:
 
 4. In `platformio.ini` configuration file change your port name, such as COM5 for Windows:
 
-   ```bash
+   ```c
    ; Custom monitor port
    ; Windows:
    monitor_port = COM[5]
