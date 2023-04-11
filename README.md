@@ -108,13 +108,14 @@ Perform the following steps to measure the speed of lizards:
 
 3. In Visual Studio Code, select **File > Open Folder...** and browse to `arduino-lizards/software/lizards` extracted folder.
 
-4. In `platformio.ini` configuration file change your port name.
+4. In `platformio.ini` configuration file change your port name, such as COM5 for Windows:
 
    ```shell
-   # Windows
+   ; Custom monitor port
+   ; Windows:
    monitor_port = COM[5]
-   # Linux
-   # monitor_port = /dev/ttyUSB*
+   ; Linux:
+   ; monitor_port = /dev/ttyUSB0
    ```
 
 5. The application is programmed in C++ and is located in the file `src > main.cpp`
