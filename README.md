@@ -1,5 +1,15 @@
 # Measuring track for lizards
 
+## ToC
+* [TODO](#TODO)
+* [About](#About)
+* [Usage](#Usage)
+  * [PuTTY for Windows and Linux](#PuTTY-for-Windows-and-Linux)
+  * [Terminal for Windows](#Terminal-for-Windows)
+  * [Termite for Windows](#Termite-for-Windows)
+* [Programming Arduino using PlatformIO](#Programming-Arduino-using-PlatformIO)
+* [References](#References)
+
 ## TODO
 
 * [x] Instructions for use & program
