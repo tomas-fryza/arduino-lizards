@@ -45,9 +45,9 @@ Perform the following steps to measure the speed of lizards:
 
 2. Set the following parameters:
 
-   a. Category: Logging: **Printable output**
+   a. Category: Session Logging: **Printable output**
 
-   b. Select Log file name, such as: `C:\Documents\putty_&Y&M&D-&T.log`
+   b. Select Log file name, such as: `C:\Documents\your-user-name\putty_&Y&M&D-&T.log`
 
       ![putty2](images/putty_2.png)
 
