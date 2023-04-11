@@ -2,9 +2,9 @@
 
 ## TODO
 
-* [ ] Instructions for use
-* [ ] Logging data to a file
-* [ ] Selecting a suitable Monitor program (PlatformIO, Arduino IDE, PuTTY, Terminal, Termite, ...)
+* [x] Instructions for use & program
+* [x] Logging data to a file
+* [x] Selecting a suitable Monitor program (PuTTY, Terminal, Terminte, PlatformIO, ...)
 * [x] Strengthen the mechanics
 * [x] Add "start box"
 * [ ] Add waterproof paint
@@ -92,7 +92,26 @@ Perform the following steps to measure the speed of lizards:
 
 ## Programming Arduino using PlatformIO
 
-TBD
+1. Follow [Installation](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-with-PlatformIO) instruction and download and install Visual Studio Code and PlatformIO plugin.
+
+2. Download this repository, ie. in [browser](https://github.com/tomas-fryza/arduino-lizards), click on green `<> Code` button and select `Download ZIP`. Extract zip file to your local computer.
+
+3. In Visual Studio Code, select **File > Open Folder...** and browse to `arduino-lizards/software/lizards` extracted folder.
+
+4. In `platformio.ini` configuration file change your port name.
+
+   ```shell
+   # Windows
+   monitor_port = COM[5]
+   # Linux
+   # monitor_port = /dev/ttyUSB*
+   ```
+
+5. The application is programmed in C++ and is located in the file `src > main.cpp`
+
+6. Compile the code, run the application, and open Serial Monitor to control it.
+
+   ![Control icons](images/platformio_footer2.png)
 
 ## References
 
