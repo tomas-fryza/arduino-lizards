@@ -92,7 +92,7 @@ Perform the following steps to measure the speed of lizards:
 
 ## Programming Arduino using PlatformIO
 
-1. Follow [Installation](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-with-PlatformIO) instruction and download and install Visual Studio Code and PlatformIO plugin.
+1. Follow [Installation](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-with-PlatformIO) instruction and download & install Visual Studio Code and PlatformIO plugin.
 
 2. Download this repository, ie. in [browser](https://github.com/tomas-fryza/arduino-lizards), click on green `<> Code` button and select `Download ZIP`. Extract zip file to your local computer.
 
