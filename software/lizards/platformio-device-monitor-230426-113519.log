@@ -1,0 +1,8 @@
+
+Test of optical gates ........... done
+Press 'S' to start each measurement
+
+id;time0;time1;time2;time3;time4;time5;time6;time7;time8;time9;time10;humid;temp
+0;0;87;195;472;1314;1465;2014;2181;2206;2474;2503;29;24
+1;0;498;559;-;-;788;-;-;-;-;1112;29;24
+2;0;1473;2969;3477;3661;3706;3993;4149;4172;4539;4611;28;25

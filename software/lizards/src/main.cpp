@@ -76,6 +76,7 @@ void setup()
     Serial.println(" done");
 
     Serial.println("Press 'S' to start each measurement");
+    Serial.println("");
     Serial.println("id;time0;time1;time2;time3;time4;time5;time6;time7;time8;time9;time10;humid;temp");
 }
 
@@ -108,6 +109,9 @@ void loop()
     if (measure_en == 1) {
         // Turn Status LED on
         digitalWrite(PIN_LED, 1);
+
+        // Display measurement ID
+        Serial.print(measure_id++);
 
         // Wait for the first optical gate
         uint8_t i = 0;
@@ -144,9 +148,6 @@ void loop()
                 }
             }
         } while ((measured_num < NGATES) && (current_millis - start_millis <= TIMEOUT_MILLIS));
-
-        // Display measurement ID
-        Serial.print(measure_id++);
 
         // Display measured times
         for (uint8_t i = 0; i < (NGATES); i++) {
