@@ -77,7 +77,7 @@ void setup()
 
     Serial.println("Press 'S' to start each measurement");
     Serial.println("");
-    Serial.println("id;time0;time1;time2;time3;time4;time5;time6;time7;time8;time9;time10;humid;temp");
+    Serial.println("id;time0;time1;time2;time3;time4;time5;time6;time7;time8;time9;time10;humid;temp;idAnimal;tempAnimal");
 }
 
 
@@ -163,7 +163,10 @@ void loop()
         Serial.print(";");
         Serial.print(DHT.humidity, 0);
         Serial.print(";");
-        Serial.println(DHT.temperature, 0);
+        Serial.print(DHT.temperature, 0);
+        
+        // Add columns for animal ID and body temperature
+        Serial.println(";NA;NA")
 
         // Clear measured values
         for (uint8_t i = 0; i < (NGATES); i++) {
