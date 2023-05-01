@@ -17,8 +17,8 @@
 * [x] Selecting a suitable Monitor program (PuTTY, Terminal, Terminte, PlatformIO, ...)
 * [x] Strengthen the mechanics
 * [x] Add "start box"
-* [ ] Add waterproof paint
-* [ ] Cover electronics, 3D printing
+* [x] Add (semi)waterproof paint
+* [x] Cover electronics, 3D printing
 * [x] Q: Consumption? A: approx. 350 milliamps
 * [x] Q: IR wavelength A: 940 nm
 * [ ] Q: Do I need to install USB driver? A: ??
