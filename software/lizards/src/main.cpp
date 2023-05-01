@@ -164,9 +164,9 @@ void loop()
         Serial.print(DHT.humidity, 0);
         Serial.print(";");
         Serial.print(DHT.temperature, 0);
-        
+
         // Add columns for animal ID and body temperature
-        Serial.println(";NA;NA")
+        Serial.println(";NA;NA");
 
         // Clear measured values
         for (uint8_t i = 0; i < (NGATES); i++) {
