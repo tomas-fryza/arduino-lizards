@@ -1,6 +1,5 @@
 # Measuring track for lizards
 
-## ToC
 * [TODO](#TODO)
 * [About](#About)
 * [Usage](#Usage)
