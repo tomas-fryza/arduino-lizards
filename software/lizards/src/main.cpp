@@ -147,7 +147,8 @@ void loop()
                     // Serial.println(i);
                 }
             }
-        } while ((measured_num < NGATES) && (current_millis - start_millis <= TIMEOUT_MILLIS));
+        } while ((measured_num < NGATES) && (current_millis - start_millis <= TIMEOUT_MILLIS) && (measured_status[NGATES-1]));
+        // } while ((i < NGATES) && (current_millis - start_millis <= TIMEOUT_MILLIS));
 
         // Display measured times
         for (uint8_t i = 0; i < (NGATES); i++) {
